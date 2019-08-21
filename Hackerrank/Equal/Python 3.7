@@ -1,0 +1,17 @@
+t = int(input())
+
+for _ in range(t):
+
+    n = int(input())
+    l = list(map(int,input().split()))
+    l.sort()
+    mini = 10**18
+    for base in range(4):
+
+        total = 0
+        for i in range(n):
+            d = l[i]-l[0]+base
+            total+=d//5 + d%5//2 + d%5%2//1
+        mini = min(total,mini)
+    print(mini)
+
