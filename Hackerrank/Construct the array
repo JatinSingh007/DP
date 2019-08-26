@@ -1,0 +1,30 @@
+n,k,x = map(int,input().split())
+dp = [-1]*(n+5)
+
+# for i in range(n):
+#     sa = [-1]*(k)
+#     dp.append(sa)
+#
+# print(solve1(1,1))
+# print(solve2(1,1))
+dp[0] = 1
+dp[1] = 1
+dp[2] = 1
+z = 1
+m = 10**9 + 7
+for i in range(2,n-1):
+
+    dp[i] = z%m*(k-1)%m - dp[i-1]%m
+    z = z%m*(k-1)%m
+
+# print(dp)
+bo = ((z%m*(k-1)%m-dp[n-2]%m)%m)
+if x == 1:
+  if n%2!=0:
+    print(bo+1)
+  elif n%2 == 0 and k%2==0:
+      print(bo-1)
+  else:
+      print(bo-1)
+else:
+    print(bo)
