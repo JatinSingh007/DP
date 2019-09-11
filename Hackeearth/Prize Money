@@ -1,0 +1,33 @@
+def main():
+ n = int(input())
+
+ l = list(map(int,input().split()))
+ l.sort()
+
+ z1 = (l[-1]*2) + 1
+
+ dp = [False]*(z1)
+ dp[0] = True
+
+ for i in range(l[0],l[-1]):
+
+    for j in l:
+        if i-j>=0 and dp[i-j]:
+            dp[i] = True
+            break
+
+
+ for i in range(l[-1]+1,z1):
+
+    for j in l:
+        if i-j>=0 and dp[i-j]:
+            dp[i] = True
+            break
+
+    if not dp[i]:
+        print(i)
+        exit()
+ 
+ print('Fake Offer!')
+
+main()
