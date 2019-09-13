@@ -1,0 +1,42 @@
+
+n = int(input())
+
+l = []
+
+for i in range(n):
+
+    k = list(map(int,input().split()))
+    l.append(k)
+
+dp = []
+
+
+for i in range(n):
+    k = [0]*n
+    dp.append(k)
+for i in range(n):
+    dp[n-1][i] = l[n-1][i]
+
+
+for i in range(n-2,-1,-1):
+    for j in range(n):
+        z1,z2,z3 = -10**18,-10**18,-10**18
+        if i+1<n and j-1>=0:
+           z1 = dp[i+1][j-1]
+
+        if i+1<n:
+            z2 = dp[i+1][j]
+
+        if j+1<n and i+1<n:
+            z3 = dp[i+1][j+1]
+
+        dp[i][j] = max(max(z1,z2,z3)+l[i][j],dp[i][j])
+
+
+
+        # break
+    # break
+
+# print(dp)
+print(max(dp[0]))
+
