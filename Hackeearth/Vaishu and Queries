@@ -1,0 +1,67 @@
+from bisect import bisect
+from collections import defaultdict
+# l = list(map(int,input().split()))
+# map(int,input().split()))
+from math import gcd,sqrt,ceil,inf
+from collections import Counter
+import sys
+sys.setrecursionlimit(1000000)
+from bisect import bisect
+from collections import defaultdict
+# l = list(map(int,input().split()))
+# map(int,input().split()))
+from math import gcd,sqrt,ceil,inf
+from collections import Counter
+import sys
+sys.setrecursionlimit(10**9)
+ 
+def solve(i,x,y):
+ 
+    if x<0 and y<0:
+        return -inf
+ 
+    if i == n and x>=0 and y>=0:
+        return 0
+    if i>=n and (x<0 or y<0):
+        return -inf
+ 
+    if dp[i][x][y]!=-1:
+        return dp[i][x][y]
+    ans = max(solve(i+1,x,y),1+solve(i+1,x-l[i][0],y-l[i][1]))
+ 
+    dp[i][x][y] = ans
+    la.append([i,x,y])
+    return ans
+ 
+ 
+ 
+n = int(input())
+l = []
+dp = []
+ans = []
+for i in range(101):
+    ka = [0]*(101)
+    dp.append(ka)
+for i in range(n):
+    k = list(input())
+    z1,z2 = k.count('R'),k.count('B')
+    l.append([z1,z2])
+ 
+ 
+for a,b in l:
+ 
+ 
+    for i in range(100,-1,-1):
+        for j in range(100,-1,-1):
+            if a<=i and b<=j:
+                dp[i][j] = max(dp[i][j],dp[i-a][j-b]+1)
+ 
+q = int(input())
+ 
+for i in range(q):
+    a,b = map(int,input().split())
+    print(dp[a][b])
+ 
+ 
+ 
+ 
