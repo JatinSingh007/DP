@@ -1,0 +1,26 @@
+#include <iostream>
+#include <bits/stdc++.h> 
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+    long long dp[1000001];
+    long long mod = pow(10,9) + 7;
+    dp[1] = 1;
+    dp[2] = 2;
+    for(int i = 3;i<1000001;i++){
+			  dp[i] = dp[i-1]%mod + (i-1)%mod*dp[i-2]%mod;
+              dp[i] = dp[i]%mod;
+		}
+	for(int j = 0;j<t;j++){
+		long long n;
+		
+		cin>>n;
+		
+		cout<<dp[n]<<endl;
+		
+	}
+	
+	return 0;
+}
