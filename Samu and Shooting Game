@@ -1,0 +1,28 @@
+from collections import defaultdict
+from math import sqrt,factorial,gcd,log2
+# map(int,input().split())
+# l = list(map(int,input().split()))
+import sys
+sys.setrecursionlimit(10**9)
+
+t = int(input())
+
+for _ in range(t):
+
+    x,y,n,w,p1,p2 = map(int,input().split())
+    p1 = (p1/100)
+    p2 = p2/100
+    dp = []
+    for i in range(n+1):
+        ka = [0]*(w+1)
+        ka[0] = 1
+        dp.append(ka)
+
+    for i in range(1,n+1):
+        for j in range(1,w+1):
+
+            dp[i][j] = max(dp[i-1][max(j-x,0)]*p1 + (1-p1)*dp[i-1][max(j,0)],dp[i-1][max(j-y,0)]*p2 +  (1-p2)*dp[i-1][max(j,0)])
+            # print(dp[i][j])
+    z = dp[n][w]*(100)
+    # print(z)
+    print('%.6f' % z)
