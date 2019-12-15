@@ -1,0 +1,49 @@
+from sys import stdin
+from collections import deque
+mod = 10**9 + 7
+# def rl():
+#     return [int(w) for w in stdin.readline().split()]
+from bisect import bisect_right
+from bisect import bisect_left
+from collections import defaultdict
+from math import sqrt,factorial,gcd,log2,inf,ceil
+# map(int,input().split())
+# # l = list(map(int,input().split()))
+# from itertools import permutations
+
+t = int(input())
+
+for _ in range(t):
+
+    n,p = map(int,input().split())
+
+    la = []
+    for i in range(n):
+        a,b = map(int,input().split())
+        la.append([a,b])
+
+    dp = []
+    dp1 = []
+    for i in range(n+1):
+        k = [0]*(p+1)
+        dp.append(k)
+        dp1.append(k)
+
+    for i in range(1,n+1):
+        for j in range(1,p+1):
+
+            a,b = la[i-1]
+            if j>=b:
+                dp[i][j] = max(dp[i-1][j-b]+a-b,dp[i-1][j])
+
+
+            else:
+                dp[i][j] = dp[i-1][j]
+
+    z = dp[n][p]
+    i = n
+    j = p
+    while j >= 0 and z == dp[i][j]:
+        j -= 1
+    j += 1
+    print(j,z+p)
