@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,m;
+        cin>>n>>m;
+        vector<vector<int>> v(n,vector<int>(m));
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                cin>>v[i][j];
+            }
+        }
+        
+        int max2=0,max1=0;
+        for(int i=0;i<n;i++)
+        {
+            int t1=0,t2=0;
+            for(int j=0;j<m;j++)
+            {
+                
+                if(i)
+                {
+                    if(v[i-1][j]==max1)v[i][j]+=max2;
+                    else v[i][j]+=max1;
+                }
+                if(v[i][j]>t1)
+                {
+                    t2=t1;
+                    t1=v[i][j];
+                }
+                else if(v[i][j]>t2)
+                {
+                    t2=v[i][j];
+                }
+            }
+            max1=t1;
+            max2=t2;
+        }
+        
+        cout<<max1<<endl;
+    }
+}
